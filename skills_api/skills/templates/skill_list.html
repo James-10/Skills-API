@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Programmer Skills</title>
-</head>
-<body>
-    <h1>Programmer Skills</h1>
-    <ul>
-    {% for skill in skills %}
-        <li>{{ skill.skill_name }}</li>
-        <p>{{ skill.description }}</p>
-    {% empty %}
-        <li>No skills found.</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
 
+{% block content %}
+<h1>Engineer's Skills</h1>
+<ul>
+{% for skill in skills %}
+    <li>{{ skill.skill_name }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
