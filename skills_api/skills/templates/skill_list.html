@@ -4,7 +4,7 @@
 <h1>Engineer's Skills</h1>
 <ul>
 {% for skill in skills %}
-    <li>{{ skill.skill_name }}</li>
+    <li> <a href="{% url 'skill_detail' skill.id %}">{{ skill.skill_name }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
