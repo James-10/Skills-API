@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+<!-- TO DO: Ensure data from database gets inserted --> 
+{% block content %}
+    <h1>More information about {{skill.skill_name}}</h1>
+    <h2>Years Experience: {{ detail.years_experience}}</h2>
+    <h2>How was {{skill.skill_name}} applied</h2>
+    <p>{{ detail.description }}</p>
+{% endblock %}
