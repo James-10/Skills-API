@@ -33,9 +33,21 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: pg_skills_server
+              value: ""
+            - name: "pg_skills_port"
+              value: ""
+            - name: "pg_skills_database"
+              value: ""
+            - name: "postgres"
+              value: ""
           ports:
             - name: http
               containerPort: 80
+              protocol: TCP
+            - name: postgresql
+              containerPort: 5432
               protocol: TCP
           livenessProbe:
             httpGet:
