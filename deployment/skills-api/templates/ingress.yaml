@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metdata:
+  name: skills-api
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: prefix
+            backend:
+              service:
+                name: {{ include "skills-api.name" .}}
+                port:
+                  name: {{ .Values.service.portName }}

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-    name: {{ .Values.configs.configMapName}}
-data:
-    env: |
-        $(cat /home/james-10/projects/frontend-apis/skills-api/skills_api/.env)

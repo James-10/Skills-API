@@ -9,6 +9,8 @@ service:
   name: "skills-api-web"
   type: NodePort
   port: 8080
+  nodePort: 32000
+  portName: http
 
 configs:
   envFilePath: ""
@@ -17,7 +19,10 @@ postgres:
   server: "skills-api-dev.ciotmqxndu4w.eu-west-1.rds.amazonaws.com"
   database: "skills-dev"
   user: "postgres"
-  port: "5432"
+  port: 5432
   password: "readonly"
+
+ingress:
+  host: 127.0.0.1
 
 resources: {}

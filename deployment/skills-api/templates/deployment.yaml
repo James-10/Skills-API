@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "skills-api.fullname" . }}
+  labels:
+    {{- include "skills-api.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "skills-api.selectorLabels" . | nindent 6}}
+  template:
+    metadata:
+      labels:
+        {{- include "skills-api.selectorLabels" . | nindent 8}}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: skills-api-web
+              containerPort: 8080
+          env:
+            - name: pg_skills_server
+              value: {{ .Values.postgres.server }}
+            - name: pg_skills_database
+              value: {{ .Values.postgres.database }}
+            - name: pg_skills_user
+              value: {{ .Values.postgres.user }}
+            - name: pg_skills_password
+              value: {{ .Values.postgres.password }}
+            - name: pg_skills_port
+              value: {{ .Values.postgres.port }}

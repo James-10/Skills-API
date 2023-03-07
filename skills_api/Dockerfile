@@ -15,4 +15,4 @@ ENV DJANGO_ENVIRONMENT=development
 
 EXPOSE 8080
 
-CMD ["python3", "manage.py", "runserver", "8080"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8080"]

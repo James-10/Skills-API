@@ -2,7 +2,7 @@ IMAGE_NAME="skills-api"
 IMAGE_TAG="dev"
 APPLICATION_NAME="skills-api"
 release_name="skills-api"
-chart_path="../deployment/skills-api-chart"
+chart_path="../deployment/skills-api"
 
 if ! minikube status;
 then 
