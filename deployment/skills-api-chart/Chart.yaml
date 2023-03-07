@@ -1,4 +1,0 @@
-apiVersion: v2
-name: "skills-api"
-description: "Helm chart for skills-api web application"
-version: 0.0.1
