@@ -1,0 +1,45 @@
+
+replicaCount: 1
+
+image:
+  repository: skills-api
+  pullPolicy: IfNotPresent
+  tag: dev
+
+namespace: default
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30354
+  protocol: TCP
+  targetPort: 8080
+  portName: http
+
+secrets:
+  name: skills-api-secrets
+
+rolloutStrategy:
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 25%
+  type: RollingUpdate
+
+resources: 
+  cpu: "2"
+  memory: "3Gi"
+  requests:
+    cpu: 1
+    memory: "512Mi"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
