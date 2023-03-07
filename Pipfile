@@ -14,8 +14,8 @@ python_version = "3.10"
 python_full_version = "3.10.7"
 
 [scripts]
-makemigrations = "python manage.py makemigrations"
-migrate = "python manage.py migrate"
-runserver = "python manage.py runserver 8001"
+makemigrations = "python skills_api/manage.py makemigrations"
+migrate = "python skills_api/manage.py migrate"
+runserver = "python skills_api/manage.py runserver 8001"
 env = 'cp .env.example .env'
 

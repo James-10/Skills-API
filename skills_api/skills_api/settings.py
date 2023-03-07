@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'skills_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("pg_skills_database").strip("'"),
-        'USER': os.environ.get("pg_skills_user").strip("'"),
-        'PASSWORD': os.environ.get("pg_skills_password").strip("'"),
-        'HOST': os.environ.get("pg_skills_server").strip("'"),
-        'PORT': os.environ.get("pg_skills_port").strip("'"),
+        'NAME': os.environ.get("pg_skills_database"),
+        'USER': os.environ.get("pg_skills_user"),
+        'PASSWORD': os.environ.get("pg_skills_password"),
+        'HOST': os.environ.get("pg_skills_server"),
+        'PORT': os.environ.get("pg_skills_port"),
     }
 }
 
