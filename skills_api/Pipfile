@@ -18,4 +18,4 @@ makemigrations = "python manage.py makemigrations"
 migrate = "python manage.py migrate"
 runserver = "python manage.py runserver 8001"
 env = 'cp .env.example .env'
-
+helm = "bash scripts/build-minikube-helm.sh"

@@ -22,9 +22,9 @@ fi
 
 kubectl delete secret $SECRET_MANIFEST
 
-docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile .
-
 eval $(minikube docker-env)
+
+docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile .
 
 helm uninstall $release_name
 
