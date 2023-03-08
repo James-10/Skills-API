@@ -18,6 +18,8 @@ service:
 
 secrets:
   name: skills-api-secrets
+  secretFilePath: "../../../skills_api/.env"
+  type: Opaque
 
 rolloutStrategy:
   rollingUpdate:
@@ -25,12 +27,22 @@ rolloutStrategy:
     maxUnavailable: 25%
   type: RollingUpdate
 
-resources: 
+postgres:
+  database: J3NraWxscy1kZXYn
+  password: password
+  port: JzU0MzIn
+  server: J3NraWxscy1hcGktZGV2LmNpb3RtcXhuZHU0dy5ldS13ZXN0LTEucmRzLmFtYXpvbmF3cy5jb20n
+  user: root
+
+resources: {}
+resourceLimits: 
   cpu: "2"
   memory: "3Gi"
   requests:
     cpu: 1
     memory: "512Mi"
+
+envFilePath: "../../../skills_api/.env"
 
 autoscaling:
   enabled: false

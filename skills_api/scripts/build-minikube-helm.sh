@@ -1,8 +1,18 @@
+#!/bin/bash
+
 IMAGE_NAME="skills-api"
 IMAGE_TAG="dev"
 APPLICATION_NAME="skills-api"
 release_name="skills-api"
 chart_path="../deployment/skills-api-helm"
+SECRET_MANIFEST="skills-api-secrets"
+
+while read -r line || [[ -n "$line" ]]; do
+    if [[ "$line" != "#" ]]; then
+        IFS='=' read -r key value <<< "$line"
+        export "$key"="$value"
+    fi
+done < ".env"
 
 if ! minikube status;
 then 
@@ -10,11 +20,14 @@ then
     minikube start --memory=4g cpus=2
 fi
 
-docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile .
+kubectl delete secret $SECRET_MANIFEST
 
 eval $(minikube docker-env)
 
+docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile .
+
 helm uninstall $release_name
 
-kubectl create secret generic skills-api-secrets --from-env-file=.env
-helm install "$release_name" "$chart_path"
+helm install $release_name $chart_path --set postgres.user=$pg_skills_user --set postgres.password=$pg_skills_password
+
+minikube service $APPLICATION_NAME
