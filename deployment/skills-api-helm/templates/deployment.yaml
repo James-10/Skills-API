@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "skills-api.labels" . | nindent 4 }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    meta.helm.sh/release-namespace: default
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -27,8 +29,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
-            - secretkeyRef:
-              name: {{ .Values.secrets.name }}
+            - secretRef:
+                name: {{ .Values.secrets.name }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       dnsPolicy: ClusterFirst
