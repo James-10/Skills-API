@@ -60,19 +60,3 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Read environment variables from a .env file and add them to a ConfigMap
-*/}}
-{{- define "skills-api.configmap.data" -}}
-{{- $env := .Env }}
-{{- $envFile := .Files.Get "../.env" }}
-{{- $lines := splitList $envFile "\n" -}}
-{{- range $key, $value := $lines -}}
-    {{- $key := trim $key -}}
-    {{- $value := trim $value -}}
-{{- if and $key $value (ne $key "") (ne $value "") -}}
-    {{- printf "%s: %s" ($key) (toString $value) | quote }}: {{- printf "%s" ($value) | quote }}
-{{- end -}}
-{{- end -}}
-{{- end -}}
